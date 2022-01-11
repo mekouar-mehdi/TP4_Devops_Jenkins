@@ -40,7 +40,11 @@ dockerImage.push()
 }
 stage('Deploy image') {
 steps{
+script {
+docker.withServer('tcp://192.168.1.7:2375', '') {
 bat "docker run -d $registry:$BUILD_NUMBER"
+}
+}
 }
 }
 }
